@@ -24,6 +24,10 @@ TEST_F(ChannelFixture, Initialization) {
     EXPECT_EQ(trigger_level, channel.get_adc().trigger_level);
 }
 
+TEST_F(ChannelFixture, Run) {
+    EXPECT_EQ(7,channel.run(inputs));
+}
+
 TEST_F(ChannelFixture, AdcConversion) {
     EXPECT_EQ(-32768, channel.get_adc().convert(-5.));
     EXPECT_EQ(-13107, channel.get_adc().convert(-2.));
