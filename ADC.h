@@ -13,7 +13,16 @@ struct ADC {
     std::vector<T> samples;
 
 public:
-    T convert(double voltage) { return (short)voltage; }
+    T convert(double voltage) {
+        int resolution = 1;
+        for(int i = 0; i < bits; i++) {
+            resolution = resolution*2;
+        } 
+        double normalized_voltage = (voltage - rangeMin)/(rangeMax - rangeMin);
+        double scaled_value = normalized_voltage*(resolution - 1) - resolution/2;
+        T ret_value = static_cast<T>(scaled_value);
+        return ret_value;
+    }
 
     size_t read_input(std::vector<double>& inputs) {
         for(auto input : inputs) {
@@ -22,7 +31,7 @@ public:
         return samples.size();
     }
 
-    double value(size_t i) { return (double)samples.at(i)*sensitivity; }
+    double value(size_t i) { return (double)samples.at(i - 1)*sensitivity; }
 
     std::vector<double> values() {
         std::vector<double> ret_values;
