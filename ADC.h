@@ -26,14 +26,14 @@ public:
 
     std::vector<double> values() {
         std::vector<double> ret_values;
-        for(type_t i; i < samples.size(); i++) { ret_values.push_back(value(i)); }
+        for(size_t i = 0; i < samples.size(); i++) { ret_values.push_back(value(i)); }
         return ret_values;
     }
 
     std::string to_string() {
-        vector<double> samples_dobule = values();
-        string ret_string = "";
-        for(auto sample : samples_double) { string = string + to_string(sample) + " "; }
-        return ret_string
+        std::vector<double> samples_double = values();
+        std::string ret_string = "";
+        for(auto sample : samples_double) { ret_string = ret_string + std::to_string(sample) + " "; }
+        return ret_string;
     }
 };

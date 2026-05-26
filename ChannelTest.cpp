@@ -1,6 +1,7 @@
+#include <gtest/gtest.h>
 #include "Channel.h"
 
-struct ChannelFixture : public testing::Test {
+struct ChannelFixture : public ::testing::Test {
     ChannelFixture() {}
     ~ChannelFixture() override {}
     void SetUp() override {}
